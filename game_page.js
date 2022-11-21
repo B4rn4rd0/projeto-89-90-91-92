@@ -8,30 +8,24 @@ document.getElementById("player1score").innerHTML = player1score;
 document.getElementById("player2score").innerHTML = player2score;
 document.getElementById("playerQuestion").innerHTML = "Turno de Pergunta- " + player1name;
 document.getElementById("playerAnswer").innerHTML = "Turno de Resposta- " + player2name;
+
 function send(){
-    getWord = document.getElementById("word").value;
-    word = getWord.toLowerCase();
-    charAt1 = word.charAt(1);
-    comprimentoDiv2 = Math.floor(word.length/2);
-    charAt2 = word.charAt(comprimentoDiv2);
-    comprimentoMenos1 = word.length-1;
-    charAt3 = word.charAt(comprimentoMenos1);
-    removeCharAt1 = word.replace(charAt1,"_");
-    removeCharAt2 = removeCharAt1.replace(charAt2,"_"); 
-    removeCharAt3 = removeCharAt2.replace(charAt3,"_");
-    questionWord = "<h4 id='wordDisplay'>Palavra: "+ removeCharAt3 + "</h4>";
-    input_box = "<br>Resposta: <input type= 'text' id='inputCheckBox'>";
-    checkButton = "<br><br><button class='btn btn-info' onclick='check()'>Checar</button>";
-    row = questionWord+ input_box+ checkButton;
+    numero1 = document.getElementById("numero1").value;
+    numero2 = document.getElementById("numero2").value;
+    actual_answer = parseInt(numero1) * parseInt(numero2);
+    question_number = "<h4>" + numero1 + " X "+ numero2 +"</h4>";
+    input_box = "<br>Resposta : <input type ='text' id ='input_check_box'>";
+    check_button = "<br><br><button class ='btn btn-info'  onclick ='check()'> Checar </button>";
+    row = question_number + input_box+ check_button;
     document.getElementById("output").innerHTML = row;
-    document.getElementById("word").value = ""; 
+    document.getElementById("numero1").value = ""; 
+    document.getElementById("numero2").value = ""; 
 }
 turnoPergunta = "player1";
 turnoResposta = "player2";
 function check(){
-    getAnswer = document.getElementById("inputCheckBox").value;
-    answer = getAnswer.toLowerCase();
-    if (answer == word){
+    getAnswer = document.getElementById("input_check_box").value;
+    if (getAnswer == actual_answer){
     if (turnoResposta == "player1"){
     player1score = player1score+ 1;
     document.getElementById("player1score").innerHTML = player1score;
